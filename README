@@ -1,0 +1,33 @@
+High level approach:
+
+    To implement the client program for this protocol we wrote a Python
+script and utilized Python's Socket API. First, we opened a TCP socket connection 
+to the server with host and port specified by the arguments passed into
+the script. If the port was not specified, the script uses a default as
+provided by the assignment. Once the socket makes a connection, our client
+program sends and receives messages from the server through this connection.
+These exchanges proceed until a BYE message is recieved from the server,
+which triggers our client program to print the data sent with the BYE
+message, close the socket and finally terminate.
+
+
+Challenges faced:
+
+    One of the challenges we faced initially was figuring out how to
+gracefully handle the command line parameters being passed in to our script.
+At first, we were iterating through the args array and applying logic to
+make sure that all the cases with optional and required arguments were met.
+After further research, we instead opted to use the argparse library and
+were able to apply all of these rules with much less code. We also made
+sure to implement input error handling for all of the parameters that
+were received.
+
+
+How we tested our code:
+
+    First, we attempted to run the Python script with parameters that were
+expected to break the code. Some of these test cases included: using the "-p" flag
+with no port value following it, trying to pass a value in with the "-s"
+flag and providing the hostname and NEU ID in the incorrect order. Next, we
+uploaded our code to the CCIS Linux servers and made sure our makefile 
+and script ran succesfully like it did on our own machines.
